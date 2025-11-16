@@ -3,16 +3,18 @@ const navToggle = document.getElementById('navToggle');
 const navMenu = document.getElementById('navMenu');
 const navLinks = document.querySelectorAll('.nav-link');
 
-navToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    navToggle.classList.toggle('active');
-});
+if (navToggle && navMenu) {
+    navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        navToggle.classList.toggle('active');
+    });
+}
 
 // Close mobile menu when clicking on a link
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        navToggle.classList.remove('active');
+        if (navMenu) navMenu.classList.remove('active');
+        if (navToggle) navToggle.classList.remove('active');
     });
 });
 
@@ -35,46 +37,51 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const navbar = document.getElementById('navbar');
 let lastScroll = 0;
 
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll > 50) {
-        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
-    } else {
-        navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-    }
-    
-    lastScroll = currentScroll;
-});
+if (navbar) {
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > 50) {
+            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
+        } else {
+            navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+        }
+        
+        lastScroll = currentScroll;
+    });
+}
 
 // Active navigation link highlighting
 const sections = document.querySelectorAll('section[id]');
 
-function highlightActiveSection() {
-    const scrollY = window.pageYOffset;
+if (sections.length > 0 && navLinks.length > 0) {
+    function highlightActiveSection() {
+        const scrollY = window.pageYOffset;
 
-    sections.forEach(section => {
-        const sectionHeight = section.offsetHeight;
-        const sectionTop = section.offsetTop - 100;
-        const sectionId = section.getAttribute('id');
+        sections.forEach(section => {
+            const sectionHeight = section.offsetHeight;
+            const sectionTop = section.offsetTop - 100;
+            const sectionId = section.getAttribute('id');
 
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${sectionId}`) {
-                    link.classList.add('active');
-                }
-            });
-        }
-    });
+            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}` || link.getAttribute('href') === `index.html#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }
+
+    window.addEventListener('scroll', highlightActiveSection);
 }
-
-window.addEventListener('scroll', highlightActiveSection);
 
 // Contact Form Handling
 const contactForm = document.getElementById('contactForm');
 
-contactForm.addEventListener('submit', function(e) {
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
     e.preventDefault();
     
     // Get form values
@@ -131,20 +138,31 @@ contactForm.addEventListener('submit', function(e) {
     // .catch(error => {
     //     alert('אירעה שגיאה. אנא נסה שוב מאוחר יותר.');
     // });
-});
+    });
+}
 
-// Project cards hover effect enhancement
+// Project cards hover effect enhancement and click navigation
 const projectCards = document.querySelectorAll('.project-card');
 
-projectCards.forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-5px)';
+if (projectCards.length > 0) {
+    projectCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+        
+        // Navigate to project detail page on click
+        card.addEventListener('click', function() {
+            const projectId = this.getAttribute('data-project-id');
+            if (projectId) {
+                window.location.href = `project-detail.html?id=${projectId}`;
+            }
+        });
     });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0)';
-    });
-});
+}
 
 // Intersection Observer for fade-in animations (optional enhancement)
 const observerOptions = {
@@ -163,29 +181,172 @@ const observer = new IntersectionObserver(function(entries) {
 
 // Observe project cards and about section
 const animatedElements = document.querySelectorAll('.project-card, .about-content, .contact-content');
-animatedElements.forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-});
+if (animatedElements.length > 0) {
+    animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+}
 
 // Close mobile menu when clicking outside
-document.addEventListener('click', function(e) {
-    const isClickInsideNav = navMenu.contains(e.target) || navToggle.contains(e.target);
-    
-    if (!isClickInsideNav && navMenu.classList.contains('active')) {
-        navMenu.classList.remove('active');
-        navToggle.classList.remove('active');
-    }
-});
+if (navMenu && navToggle) {
+    document.addEventListener('click', function(e) {
+        const isClickInsideNav = navMenu.contains(e.target) || navToggle.contains(e.target);
+        
+        if (!isClickInsideNav && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            navToggle.classList.remove('active');
+        }
+    });
+}
 
 // Prevent form submission on Enter key in textarea (allow Shift+Enter for new line)
 const messageTextarea = document.getElementById('message');
-messageTextarea.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' && !e.shiftKey) {
-        // Allow normal Enter behavior in textarea
-        // Form will only submit on button click
+if (messageTextarea) {
+    messageTextarea.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            // Allow normal Enter behavior in textarea
+            // Form will only submit on button click
+        }
+    });
+}
+
+// Reviews Slider with Automatic Transition
+const reviewsSliderTrack = document.getElementById('reviewsSliderTrack');
+const reviewsIndicators = document.getElementById('reviewsIndicators');
+
+if (reviewsSliderTrack && reviewsIndicators) {
+    const reviewCards = reviewsSliderTrack.querySelectorAll('.review-card');
+    const totalReviews = reviewCards.length;
+    let currentReview = 0;
+    let autoPlayInterval = null;
+    const TRANSITION_INTERVAL = 7000; // 7 seconds
+
+    // Create indicators
+    reviewCards.forEach((_, index) => {
+        const indicator = document.createElement('button');
+        indicator.className = 'review-indicator';
+        if (index === 0) indicator.classList.add('active');
+        indicator.setAttribute('data-review-index', index);
+        indicator.setAttribute('aria-label', `עבור לביקורת ${index + 1}`);
+        indicator.addEventListener('click', () => goToReview(index));
+        reviewsIndicators.appendChild(indicator);
+    });
+
+    // Update slider position
+    function updateSlider() {
+        const translateX = -currentReview * 100;
+        reviewsSliderTrack.style.transform = `translateX(${translateX}%)`;
+
+        // Update indicators
+        const indicators = reviewsIndicators.querySelectorAll('.review-indicator');
+        indicators.forEach((indicator, index) => {
+            if (index === currentReview) {
+                indicator.classList.add('active');
+            } else {
+                indicator.classList.remove('active');
+            }
+        });
     }
-});
+
+    // Go to specific review
+    function goToReview(index) {
+        if (index >= 0 && index < totalReviews) {
+            currentReview = index;
+            updateSlider();
+            resetAutoPlay();
+        }
+    }
+
+    // Next review
+    function nextReview() {
+        currentReview = (currentReview + 1) % totalReviews;
+        updateSlider();
+    }
+
+    // Previous review
+    function prevReview() {
+        currentReview = (currentReview - 1 + totalReviews) % totalReviews;
+        updateSlider();
+    }
+
+    // Start auto-play
+    function startAutoPlay() {
+        autoPlayInterval = setInterval(nextReview, TRANSITION_INTERVAL);
+    }
+
+    // Reset auto-play (restart timer)
+    function resetAutoPlay() {
+        if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+        }
+        startAutoPlay();
+    }
+
+    // Pause auto-play on hover
+    const reviewsContainer = document.querySelector('.reviews-slider-container');
+    if (reviewsContainer) {
+        reviewsContainer.addEventListener('mouseenter', () => {
+            if (autoPlayInterval) {
+                clearInterval(autoPlayInterval);
+            }
+        });
+
+        reviewsContainer.addEventListener('mouseleave', () => {
+            startAutoPlay();
+        });
+    }
+
+    // Touch/swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    reviewsSliderTrack.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+        }
+    }, { passive: true });
+
+    reviewsSliderTrack.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+        startAutoPlay();
+    }, { passive: true });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                nextReview(); // Swipe left (RTL: next)
+            } else {
+                prevReview(); // Swipe right (RTL: previous)
+            }
+        }
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (reviewsContainer && reviewsContainer.getBoundingClientRect().top < window.innerHeight && 
+            reviewsContainer.getBoundingClientRect().bottom > 0) {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (e.key === 'ArrowRight') {
+                    prevReview(); // RTL: right arrow goes to previous
+                } else {
+                    nextReview(); // RTL: left arrow goes to next
+                }
+                resetAutoPlay();
+            }
+        }
+    });
+
+    // Initialize
+    updateSlider();
+    startAutoPlay();
+}
 

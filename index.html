@@ -48,7 +48,7 @@
             
             <div class="projects-grid">
                 <!-- Project 1 -->
-                <div class="project-card">
+                <div class="project-card" data-project-id="1">
                     <div class="project-image">
                         <div class="project-placeholder">תמונה 1</div>
                     </div>
@@ -63,7 +63,7 @@
                 </div>
 
                 <!-- Project 2 -->
-                <div class="project-card">
+                <div class="project-card" data-project-id="2">
                     <div class="project-image">
                         <div class="project-placeholder">תמונה 2</div>
                     </div>
@@ -78,7 +78,7 @@
                 </div>
 
                 <!-- Project 3 -->
-                <div class="project-card">
+                <div class="project-card" data-project-id="3">
                     <div class="project-image">
                         <div class="project-placeholder">תמונה 3</div>
                     </div>
@@ -93,7 +93,7 @@
                 </div>
 
                 <!-- Project 4 -->
-                <div class="project-card">
+                <div class="project-card" data-project-id="4">
                     <div class="project-image">
                         <div class="project-placeholder">תמונה 4</div>
                     </div>
@@ -108,7 +108,7 @@
                 </div>
 
                 <!-- Project 5 -->
-                <div class="project-card">
+                <div class="project-card" data-project-id="5">
                     <div class="project-image">
                         <div class="project-placeholder">תמונה 5</div>
                     </div>
@@ -123,7 +123,7 @@
                 </div>
 
                 <!-- Project 6 -->
-                <div class="project-card">
+                <div class="project-card" data-project-id="6">
                     <div class="project-image">
                         <div class="project-placeholder">תמונה 6</div>
                     </div>
@@ -171,6 +171,105 @@
                 </div>
                 <div class="about-image">
                     <div class="about-placeholder">תמונה אישית</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <h2 class="section-title">מה הלקוחות אומרים</h2>
+            <p class="section-subtitle">המלצות מלקוחות מרוצים</p>
+            
+            <div class="reviews-slider-container">
+                <div class="reviews-slider-wrapper">
+                    <div class="reviews-slider-track" id="reviewsSliderTrack">
+                        <!-- Review 1 -->
+                        <div class="review-card">
+                            <div class="review-content">
+                                <div class="review-stars">
+                                    <span>★★★★★</span>
+                                </div>
+                                <p class="review-text">"בתיה עשתה עבודה מדהימה! השיפוץ של הבית שלנו עבר בצורה חלקה ומקצועית. היא הקשיבה לכל הבקשות שלנו ויצרה חלל מושלם עבורנו."</p>
+                                <div class="review-author">
+                                    <div class="review-author-info">
+                                        <h4 class="review-author-name">שרה כהן</h4>
+                                        <p class="review-author-location">רמת גן</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Review 2 -->
+                        <div class="review-card">
+                            <div class="review-content">
+                                <div class="review-stars">
+                                    <span>★★★★★</span>
+                                </div>
+                                <p class="review-text">"העבודה עם בתיה הייתה חוויה נהדרת. היא מקצועית, יצירתית וקשובה. הדירה שלנו נראית עכשיו כמו משהו ממגזין! ממליצה בחום."</p>
+                                <div class="review-author">
+                                    <div class="review-author-info">
+                                        <h4 class="review-author-name">דוד לוי</h4>
+                                        <p class="review-author-location">תל אביב</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Review 3 -->
+                        <div class="review-card">
+                            <div class="review-content">
+                                <div class="review-stars">
+                                    <span>★★★★★</span>
+                                </div>
+                                <p class="review-text">"בתיה הפכה את הבית שלנו לחלום. העיצוב מושלם, הפרטים מדויקים והתוצאה עולה על כל הציפיות. תודה רבה על עבודה מעולה!"</p>
+                                <div class="review-author">
+                                    <div class="review-author-info">
+                                        <h4 class="review-author-name">מיכל דוד</h4>
+                                        <p class="review-author-location">הרצליה</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Review 4 -->
+                        <div class="review-card">
+                            <div class="review-content">
+                                <div class="review-stars">
+                                    <span>★★★★★</span>
+                                </div>
+                                <p class="review-text">"אדריכלית מקצועית ומנוסה. בתיה ליוותה אותנו משלב התכנון ועד לסיום הבנייה. התוצאה מדהימה ואנחנו מאוד מרוצים!"</p>
+                                <div class="review-author">
+                                    <div class="review-author-info">
+                                        <h4 class="review-author-name">יוסי מזרחי</h4>
+                                        <p class="review-author-location">רמת אביב</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Review 5 -->
+                        <div class="review-card">
+                            <div class="review-content">
+                                <div class="review-stars">
+                                    <span>★★★★★</span>
+                                </div>
+                                <p class="review-text">"עבודה מעולה! בתיה הבינה בדיוק מה אנחנו רוצים ויצרה עבורנו חלל יפה ופונקציונלי. השיפוץ עבר בזמן ובתקציב. מומלץ מאוד!"</p>
+                                <div class="review-author">
+                                    <div class="review-author-info">
+                                        <h4 class="review-author-name">רונית ישראלי</h4>
+                                        <p class="review-author-location">כפר סבא</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review Indicators -->
+                <div class="reviews-indicators" id="reviewsIndicators">
+                    <!-- Indicators will be dynamically inserted here -->
                 </div>
             </div>
         </div>
