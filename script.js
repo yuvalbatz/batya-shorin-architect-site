@@ -8,7 +8,7 @@ const translations = {
             contact: 'Contact'
         },
         hero: {
-            title: 'Batya Shorin',
+            title: 'Batya Shurin',
             subtitle: 'Professional Architect Specializing in Home and Apartment Design',
             description: 'Creating functional and beautiful spaces tailored to your personal needs',
             button: "Let's Get Started"
@@ -54,7 +54,7 @@ const translations = {
         },
         about: {
             title: 'About',
-            description1: 'I am Batya Shorin, a professional architect with over 15 years of experience in planning and designing homes and apartments. I specialize in creating functional and beautiful spaces tailored precisely to each client\'s needs and lifestyle.',
+            description1: 'I am Batya Shurin, a professional architect with over 15 years of experience in planning and designing homes and apartments. I specialize in creating functional and beautiful spaces tailored precisely to each client\'s needs and lifestyle.',
             description2: 'My approach combines creative thinking with practical solutions, with attention to detail and adherence to schedules. Every project is an opportunity for me to create something unique and perfectly suited to the client.',
             feature1: {
                 title: 'Custom Planning',
@@ -116,7 +116,7 @@ const translations = {
             submit: 'Send Message'
         },
         footer: {
-            text: 'Batya Shorin - Architect. All rights reserved.'
+            text: 'Batya Shurin - Architect. All rights reserved.'
         },
         project_detail: {
             back: '← Back to Projects'
@@ -290,7 +290,7 @@ function translatePage(lang) {
     if (metaDescription) {
         if (window.location.pathname.includes('project-detail')) {
             metaDescription.content = lang === 'en' 
-                ? 'Project Details - Batya Shorin Architect'
+                ? 'Project Details - Batya Shurin Architect'
                 : 'פרטי פרויקט - בתיה שורין אדריכלית';
         } else {
             metaDescription.content = lang === 'en' 
@@ -302,11 +302,11 @@ function translatePage(lang) {
     // Update title
     if (window.location.pathname.includes('project-detail')) {
         document.title = lang === 'en' 
-            ? 'Project Details - Batya Shorin'
+            ? 'Project Details - Batya Shurin'
             : 'פרטי פרויקט - בתיה שורין';
     } else {
         document.title = lang === 'en' 
-            ? 'Batya Shorin - Architect'
+            ? 'Batya Shurin - Architect'
             : 'בתיה שורין - אדריכלית';
     }
     
