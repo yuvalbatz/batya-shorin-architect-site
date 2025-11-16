@@ -11,12 +11,14 @@
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="container">
-            <div class="nav-phone">050-1234567</div>
+            <a href="index.html" class="nav-logo" aria-label="Home">
+                <img src="logo.jpeg" alt="Batya logo">
+            </a>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html#home" class="nav-link" data-translate="nav.home">Home</a></li>
-                <li><a href="index.html#projects" class="nav-link" data-translate="nav.projects">Projects</a></li>
-                <li><a href="index.html#about" class="nav-link" data-translate="nav.about">About</a></li>
-                <li><a href="index.html#contact" class="nav-link" data-translate="nav.contact">Contact</a></li>
+                <li><a href="index.html" class="nav-link" data-translate="nav.home">Home</a></li>
+                <li><a href="projects.html" class="nav-link" data-translate="nav.projects">Projects</a></li>
+                <li><a href="about.html" class="nav-link" data-translate="nav.about">About</a></li>
+                <li><a href="contact.html" class="nav-link" data-translate="nav.contact">Contact</a></li>
             </ul>
             <button class="lang-switcher" id="langSwitcher" aria-label="Switch language">
                 <span id="langText">עברית</span>
@@ -33,7 +35,7 @@
     <section class="project-detail">
         <div class="container">
             <!-- Back Button -->
-            <a href="index.html#projects" class="back-button">
+            <a href="projects.html" class="back-button">
                 <span data-translate="project_detail.back">← Back to Projects</span>
             </a>
 
@@ -68,9 +70,57 @@
         </div>
     </section>
 
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title" data-translate="contact.title">Contact</h2>
+            <p class="section-subtitle" data-translate="contact.subtitle">Let's talk about your project</p>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3 data-translate="contact.phone_label">Phone</h3>
+                        <p>050-1234567</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3 data-translate="contact.email_label">Email</h3>
+                        <p>batya@example.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3 data-translate="contact.address_label">Address</h3>
+                        <p data-translate="contact.address">Tel Aviv, Israel</p>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name" data-translate="form.name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" data-translate="form.phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-translate="form.email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-translate="form.message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" data-translate="form.submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
+            <div class="footer-brand">
+                <img src="logo.jpeg" alt="Batya logo" class="footer-logo">
+            </div>
             <p>&copy; 2024 <span data-translate="footer.text">Batya Shurin - Architect. All rights reserved.</span></p>
         </div>
     </footer>

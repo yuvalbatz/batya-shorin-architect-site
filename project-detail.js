@@ -9,7 +9,40 @@ const projectsData = {
             en: 'Complete renovation of a two-story private house, including modern interior and exterior design',
             he: 'שיפוץ מלא של בית פרטי בן שתי קומות, כולל עיצוב פנים וחוץ מודרני'
         },
-        images: [] // Will be populated with image paths later
+        // All image paths from picProject1 folder
+        images: [
+            'picProject1/image1.jpg',
+            'picProject1/image2.jpg',
+            'picProject1/image3.jpg',
+            'picProject1/image4.jpg',
+            'picProject1/image5.jpg',
+            'picProject1/image6.jpg',
+            'picProject1/image7.jpg',
+            'picProject1/image8.jpg',
+            'picProject1/image9.jpg',
+            'picProject1/image10.jpg',
+            'picProject1/image11.jpg',
+            'picProject1/image12.jpg',
+            'picProject1/image13.jpg',
+            'picProject1/image14.jpg',
+            'picProject1/image15.jpg',
+            'picProject1/image16.jpg',
+            'picProject1/image17.jpg',
+            'picProject1/image18.jpg',
+            'picProject1/image19.jpg',
+            'picProject1/image20.jpg',
+            'picProject1/image21.jpg',
+            'picProject1/image22.jpg',
+            'picProject1/image23.jpg',
+            'picProject1/image24.jpg',
+            'picProject1/image25.jpg',
+            'picProject1/image26.jpg',
+            'picProject1/image27.jpg',
+            'picProject1/image28.jpg',
+            'picProject1/image29.jpg',
+            'picProject1/image30.jpg',
+            'picProject1/image31.jpg'
+        ]
     },
     '2': {
         title: {
@@ -68,8 +101,10 @@ const projectsData = {
     }
 };
 
-// Get current language from localStorage or default to 'en'
-let currentLang = localStorage.getItem('language') || 'en';
+// Get current language function - reads from localStorage
+function getCurrentLang() {
+    return localStorage.getItem('language') || 'en';
+}
 
 // Get project ID from URL
 function getProjectIdFromURL() {
@@ -81,45 +116,54 @@ function getProjectIdFromURL() {
 function initProjectDetail() {
     const projectId = getProjectIdFromURL();
     
+    console.log('Initializing project detail for ID:', projectId);
+    
     if (!projectId || !projectsData[projectId]) {
+        console.error('Project not found:', projectId);
         // Redirect to projects page if project not found
-        window.location.href = 'index.html#projects';
+        window.location.href = 'projects.html';
         return;
     }
     
     const project = projectsData[projectId];
+    console.log('Project data:', project);
+    console.log('Project images:', project.images);
     
     // Update project title based on current language
     updateProjectTitle(project);
     
-    // Initialize slider
-    initSlider(project);
+    // Wait a bit to ensure DOM is ready, then initialize slider
+    setTimeout(() => {
+        initSlider(project);
+    }, 100);
 }
 
 // Update project title based on current language
 function updateProjectTitle(project) {
     const titleElement = document.getElementById('projectTitle');
     if (titleElement && project.title) {
-        titleElement.textContent = project.title[currentLang] || project.title.en;
+        const lang = getCurrentLang();
+        titleElement.textContent = project.title[lang] || project.title.en;
     }
 }
 
 // Listen for language changes
+let lastLang = getCurrentLang();
 window.addEventListener('storage', (e) => {
     if (e.key === 'language') {
-        currentLang = e.newValue || 'en';
         const projectId = getProjectIdFromURL();
         if (projectId && projectsData[projectId]) {
             updateProjectTitle(projectsData[projectId]);
+            initSlider(projectsData[projectId]);
         }
     }
 });
 
 // Check for language changes from script.js
 setInterval(() => {
-    const newLang = localStorage.getItem('language') || 'en';
-    if (newLang !== currentLang) {
-        currentLang = newLang;
+    const newLang = getCurrentLang();
+    if (newLang !== lastLang) {
+        lastLang = newLang;
         const projectId = getProjectIdFromURL();
         if (projectId && projectsData[projectId]) {
             updateProjectTitle(projectsData[projectId]);
@@ -140,11 +184,21 @@ function initSlider(project) {
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     
-    if (!sliderTrack || !sliderIndicators) return;
+    if (!sliderTrack || !sliderIndicators) {
+        console.error('Slider elements not found');
+        return;
+    }
     
-    // For now, create placeholder slides (3 placeholders as example)
-    // Later, when images are added, replace this with actual image paths
-    const numberOfSlides = project.images.length > 0 ? project.images.length : 3;
+    // Filter out empty image paths and use actual images
+    const validImages = project.images ? project.images.filter(img => img && img.trim() !== '') : [];
+    const numberOfSlides = validImages.length > 0 ? validImages.length : 1;
+    
+    console.log('Initializing slider with', numberOfSlides, 'images');
+    console.log('Valid images:', validImages);
+    
+    if (validImages.length === 0) {
+        console.warn('No valid images found for project');
+    }
     
     // Clear existing content
     sliderTrack.innerHTML = '';
@@ -157,20 +211,36 @@ function initSlider(project) {
         slide.className = 'slider-slide';
         slide.setAttribute('data-slide-index', i);
         
-        if (project.images[i]) {
+        if (validImages[i]) {
             // If image exists, create img element
             const img = document.createElement('img');
-            img.src = project.images[i];
-            const imageText = currentLang === 'he' ? 'תמונה' : 'Image';
-            img.alt = `${project.title[currentLang] || project.title.en} - ${imageText} ${i + 1}`;
+            img.src = validImages[i];
+            const lang = localStorage.getItem('language') || 'en';
+            const imageText = lang === 'he' ? 'תמונה' : 'Image';
+            img.alt = `${project.title[lang] || project.title.en} - ${imageText} ${i + 1}`;
             img.className = 'slider-image';
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', () => openLightbox(i));
+            img.addEventListener('load', function() {
+                console.log('Image loaded:', validImages[i]);
+            });
+            img.addEventListener('error', function() {
+                console.error('Image failed to load:', validImages[i]);
+                // If image fails to load, show placeholder
+                this.style.display = 'none';
+                const placeholder = document.createElement('div');
+                placeholder.className = 'slider-placeholder';
+                placeholder.textContent = `${project.title[lang] || project.title.en} - ${imageText} ${i + 1}`;
+                slide.appendChild(placeholder);
+            });
             slide.appendChild(img);
         } else {
             // Create placeholder
             const placeholder = document.createElement('div');
             placeholder.className = 'slider-placeholder';
-            const imageText = currentLang === 'he' ? 'תמונה' : 'Image';
-            placeholder.textContent = `${project.title[currentLang] || project.title.en} - ${imageText} ${i + 1}`;
+            const lang = localStorage.getItem('language') || 'en';
+            const imageText = lang === 'he' ? 'תמונה' : 'Image';
+            placeholder.textContent = `${project.title[lang] || project.title.en} - ${imageText} ${i + 1}`;
             slide.appendChild(placeholder);
         }
         
@@ -181,7 +251,8 @@ function initSlider(project) {
         indicator.className = 'slider-indicator';
         if (i === 0) indicator.classList.add('active');
         indicator.setAttribute('data-slide-index', i);
-        const imageText = currentLang === 'he' ? 'עבור לתמונה' : 'Go to image';
+        const lang = getCurrentLang();
+        const imageText = lang === 'he' ? 'עבור לתמונה' : 'Go to image';
         indicator.setAttribute('aria-label', `${imageText} ${i + 1}`);
         indicator.addEventListener('click', () => goToSlide(i));
         sliderIndicators.appendChild(indicator);
@@ -190,6 +261,11 @@ function initSlider(project) {
     // Initialize slider state
     let currentSlide = 0;
     const totalSlides = numberOfSlides;
+    let autoPlayInterval = null;
+    let isLightboxOpen = false;
+    
+    // Store validImages in closure for lightbox
+    const imagesForLightbox = validImages;
     
     // Update slider position
     function updateSlider() {
@@ -215,6 +291,11 @@ function initSlider(project) {
             nextBtn.style.opacity = currentSlide === totalSlides - 1 ? '0.5' : '1';
             nextBtn.style.cursor = currentSlide === totalSlides - 1 ? 'not-allowed' : 'pointer';
         }
+        
+        // Update lightbox if open
+        if (isLightboxOpen) {
+            updateLightbox();
+        }
     }
     
     // Go to specific slide
@@ -222,6 +303,7 @@ function initSlider(project) {
         if (index >= 0 && index < totalSlides) {
             currentSlide = index;
             updateSlider();
+            resetAutoPlay();
         }
     }
     
@@ -229,16 +311,42 @@ function initSlider(project) {
     function nextSlide() {
         if (currentSlide < totalSlides - 1) {
             currentSlide++;
-            updateSlider();
+        } else {
+            currentSlide = 0; // Loop back to first
         }
+        updateSlider();
+        resetAutoPlay();
     }
     
     // Previous slide
     function prevSlide() {
         if (currentSlide > 0) {
             currentSlide--;
-            updateSlider();
+        } else {
+            currentSlide = totalSlides - 1; // Loop to last
         }
+        updateSlider();
+        resetAutoPlay();
+    }
+    
+    // Auto-play functionality
+    function startAutoPlay() {
+        if (autoPlayInterval) clearInterval(autoPlayInterval);
+        if (!isLightboxOpen) {
+            autoPlayInterval = setInterval(nextSlide, 5000); // 5 seconds
+        }
+    }
+    
+    function stopAutoPlay() {
+        if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = null;
+        }
+    }
+    
+    function resetAutoPlay() {
+        stopAutoPlay();
+        startAutoPlay();
     }
     
     // Event listeners
@@ -288,15 +396,109 @@ function initSlider(project) {
         }
     }
     
+    // Lightbox functionality
+    function createLightbox() {
+        // Check if lightbox already exists
+        if (document.getElementById('imageLightbox')) return;
+        
+        const lightbox = document.createElement('div');
+        lightbox.id = 'imageLightbox';
+        lightbox.className = 'image-lightbox';
+        lightbox.innerHTML = `
+            <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
+            <button class="lightbox-prev" aria-label="Previous image">‹</button>
+            <button class="lightbox-next" aria-label="Next image">›</button>
+            <div class="lightbox-content">
+                <img src="" alt="" class="lightbox-image">
+            </div>
+            <div class="lightbox-counter"></div>
+        `;
+        document.body.appendChild(lightbox);
+        
+        // Event listeners for lightbox
+        const closeBtn = lightbox.querySelector('.lightbox-close');
+        const prevBtn = lightbox.querySelector('.lightbox-prev');
+        const nextBtn = lightbox.querySelector('.lightbox-next');
+        const lightboxImg = lightbox.querySelector('.lightbox-image');
+        
+        closeBtn.addEventListener('click', closeLightbox);
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            updateLightbox();
+        });
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            updateLightbox();
+        });
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+        
+        // Keyboard navigation in lightbox
+        document.addEventListener('keydown', handleLightboxKeyboard);
+    }
+    
+    function handleLightboxKeyboard(e) {
+        if (!isLightboxOpen) return;
+        if (e.key === 'Escape') {
+            closeLightbox();
+        } else if (e.key === 'ArrowLeft') {
+            prevSlide();
+            updateLightbox();
+        } else if (e.key === 'ArrowRight') {
+            nextSlide();
+            updateLightbox();
+        }
+    }
+    
+    function openLightbox(index) {
+        isLightboxOpen = true;
+        currentSlide = index;
+        createLightbox();
+        const lightbox = document.getElementById('imageLightbox');
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        updateLightbox();
+        stopAutoPlay();
+    }
+    
+    function closeLightbox() {
+        isLightboxOpen = false;
+        const lightbox = document.getElementById('imageLightbox');
+        if (lightbox) {
+            lightbox.classList.remove('active');
+        }
+        document.body.style.overflow = '';
+        startAutoPlay();
+    }
+    
+    function updateLightbox() {
+        if (!isLightboxOpen) return;
+        const lightbox = document.getElementById('imageLightbox');
+        if (!lightbox) return;
+        
+        const lightboxImg = lightbox.querySelector('.lightbox-image');
+        const counter = lightbox.querySelector('.lightbox-counter');
+        
+        if (imagesForLightbox[currentSlide]) {
+            lightboxImg.src = imagesForLightbox[currentSlide];
+            const lang = getCurrentLang();
+            const imageText = lang === 'he' ? 'תמונה' : 'Image';
+            lightboxImg.alt = `${project.title[lang] || project.title.en} - ${imageText} ${currentSlide + 1}`;
+            counter.textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+    }
+    
+    // Pause auto-play on hover
+    const sliderViewport = document.querySelector('.slider-viewport');
+    if (sliderViewport) {
+        sliderViewport.addEventListener('mouseenter', stopAutoPlay);
+        sliderViewport.addEventListener('mouseleave', startAutoPlay);
+    }
+    
     // Initialize
     updateSlider();
-    
-    // Auto-play (optional - can be enabled later)
-    // let autoPlayInterval = setInterval(nextSlide, 5000);
-    // sliderTrack.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
-    // sliderTrack.addEventListener('mouseleave', () => {
-    //     autoPlayInterval = setInterval(nextSlide, 5000);
-    // });
+    startAutoPlay();
 }
 
 // Initialize when DOM is loaded

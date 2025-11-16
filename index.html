@@ -6,17 +6,20 @@
     <meta name="description" content="Architecture Portfolio - Professional projects for home and apartment design">
     <title>Batya Shurin - Architect</title>
     <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="container">
-            <div class="nav-phone">050-1234567</div>
+            <a href="index.html" class="nav-logo" aria-label="Home">
+                <img src="logo.jpeg" alt="Batya logo">
+            </a>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#home" class="nav-link" data-translate="nav.home">Home</a></li>
-                <li><a href="#projects" class="nav-link" data-translate="nav.projects">Projects</a></li>
-                <li><a href="#about" class="nav-link" data-translate="nav.about">About</a></li>
-                <li><a href="#contact" class="nav-link" data-translate="nav.contact">Contact</a></li>
+                <li><a href="index.html" class="nav-link" data-translate="nav.home">Home</a></li>
+                <li><a href="projects.html" class="nav-link" data-translate="nav.projects">Projects</a></li>
+                <li><a href="about.html" class="nav-link" data-translate="nav.about">About</a></li>
+                <li><a href="contact.html" class="nav-link" data-translate="nav.contact">Contact</a></li>
             </ul>
             <button class="lang-switcher" id="langSwitcher" aria-label="Switch language">
                 <span id="langText">עברית</span>
@@ -35,146 +38,10 @@
             <h1 class="hero-title" data-translate="hero.title">Batya Shurin</h1>
             <p class="hero-subtitle" data-translate="hero.subtitle">Professional Architect Specializing in Home and Apartment Design</p>
             <p class="hero-description" data-translate="hero.description">Creating functional and beautiful spaces tailored to your personal needs</p>
-            <a href="#contact" class="btn btn-primary" data-translate="hero.button">Let's Get Started</a>
+            <a href="contact.html" class="btn btn-primary" data-translate="hero.button">Let's Get Started</a>
         </div>
         <div class="hero-image">
             <div class="hero-placeholder"></div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title" data-translate="projects.title">Projects</h2>
-            <p class="section-subtitle" data-translate="projects.subtitle">A selection of projects I've completed for private clients</p>
-            
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <div class="project-card" data-project-id="1">
-                    <div class="project-image">
-                        <div class="project-placeholder">תמונה 1</div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title" data-translate="project.1.title">Private House - Ramat Gan</h3>
-                        <p class="project-description" data-translate="project.1.description">Complete renovation of a two-story private house, including modern interior and exterior design</p>
-                        <div class="project-details">
-                            <span class="project-tag" data-translate="tag.renovation">Renovation</span>
-                            <span class="project-tag" data-translate="tag.private_house">Private House</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card" data-project-id="2">
-                    <div class="project-image">
-                        <div class="project-placeholder">תמונה 2</div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title" data-translate="project.2.title">Penthouse Apartment - Tel Aviv</h3>
-                        <p class="project-description" data-translate="project.2.description">Design of a penthouse apartment with sea view, combining open spaces and privacy</p>
-                        <div class="project-details">
-                            <span class="project-tag" data-translate="tag.interior_design">Interior Design</span>
-                            <span class="project-tag" data-translate="tag.apartment">Apartment</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card" data-project-id="3">
-                    <div class="project-image">
-                        <div class="project-placeholder">תמונה 3</div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title" data-translate="project.3.title">New House - Herzliya</h3>
-                        <p class="project-description" data-translate="project.3.description">Planning and construction of a new house with emphasis on sustainability and natural light utilization</p>
-                        <div class="project-details">
-                            <span class="project-tag" data-translate="tag.new_construction">New Construction</span>
-                            <span class="project-tag" data-translate="tag.private_house">Private House</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="project-card" data-project-id="4">
-                    <div class="project-image">
-                        <div class="project-placeholder">תמונה 4</div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title" data-translate="project.4.title">Apartment Renovation - Ramat Aviv</h3>
-                        <p class="project-description" data-translate="project.4.description">Comprehensive renovation of a 4-room apartment with space opening and flow creation</p>
-                        <div class="project-details">
-                            <span class="project-tag" data-translate="tag.renovation">Renovation</span>
-                            <span class="project-tag" data-translate="tag.apartment">Apartment</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 5 -->
-                <div class="project-card" data-project-id="5">
-                    <div class="project-image">
-                        <div class="project-placeholder">תמונה 5</div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title" data-translate="project.5.title">Cottage House - Kfar Saba</h3>
-                        <p class="project-description" data-translate="project.5.description">Renovation and expansion of a cottage house with additional floor and designed yard</p>
-                        <div class="project-details">
-                            <span class="project-tag" data-translate="tag.expansion">Expansion</span>
-                            <span class="project-tag" data-translate="tag.private_house">Private House</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 6 -->
-                <div class="project-card" data-project-id="6">
-                    <div class="project-image">
-                        <div class="project-placeholder">תמונה 6</div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title" data-translate="project.6.title">Studio Apartment - Tel Aviv</h3>
-                        <p class="project-description" data-translate="project.6.description">Smart design of a studio apartment with maximum storage solutions</p>
-                        <div class="project-details">
-                            <span class="project-tag" data-translate="tag.interior_design">Interior Design</span>
-                            <span class="project-tag" data-translate="tag.small_apartment">Small Apartment</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2 class="section-title" data-translate="about.title">About</h2>
-                    <p class="about-description" data-translate="about.description1">
-                        I am Batya Shurin, a professional architect with over 15 years of experience in planning and designing homes and apartments.
-                        I specialize in creating functional and beautiful spaces tailored precisely to each client's needs and lifestyle.
-                    </p>
-                    <p class="about-description" data-translate="about.description2">
-                        My approach combines creative thinking with practical solutions, with attention to detail and adherence to schedules.
-                        Every project is an opportunity for me to create something unique and perfectly suited to the client.
-                    </p>
-                    <div class="about-features">
-                        <div class="feature-item">
-                            <h3 data-translate="about.feature1.title">Custom Planning</h3>
-                            <p data-translate="about.feature1.description">Every project is specifically planned for the client and their unique needs</p>
-                        </div>
-                        <div class="feature-item">
-                            <h3 data-translate="about.feature2.title">Professional Guidance</h3>
-                            <p data-translate="about.feature2.description">Full guidance from the planning stage until construction completion</p>
-                        </div>
-                        <div class="feature-item">
-                            <h3 data-translate="about.feature3.title">Timeline Commitment</h3>
-                            <p data-translate="about.feature3.description">Commitment to meeting timelines and the established budget</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <div class="about-placeholder">תמונה אישית</div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -325,6 +192,9 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
+            <div class="footer-brand">
+                <img src="logo.png" alt="Batya logo" class="footer-logo">
+            </div>
             <p>&copy; 2024 <span data-translate="footer.text">Batya Shurin - Architect. All rights reserved.</span></p>
         </div>
     </footer>

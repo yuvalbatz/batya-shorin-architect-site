@@ -113,7 +113,13 @@ const translations = {
             phone: 'Phone',
             email: 'Email',
             message: 'Message',
-            submit: 'Send Message'
+            submit: 'Send Message',
+            success: 'Thank you! Your message has been sent successfully. I will get back to you soon.',
+            error: 'An error occurred. Please try again later.',
+            fill_all: 'Please fill in all fields',
+            invalid_email: 'Please enter a valid email address',
+            invalid_phone: 'Please enter a valid phone number',
+            sending: 'Sending...'
         },
         footer: {
             text: 'Batya Shurin - Architect. All rights reserved.'
@@ -235,7 +241,13 @@ const translations = {
             phone: 'טלפון',
             email: 'אימייל',
             message: 'הודעה',
-            submit: 'שלח הודעה'
+            submit: 'שלח הודעה',
+            success: 'תודה! ההודעה נשלחה בהצלחה. אחזור אליך בהקדם.',
+            error: 'אירעה שגיאה. אנא נסה שוב מאוחר יותר.',
+            fill_all: 'אנא מלא את כל השדות',
+            invalid_email: 'אנא הזן כתובת אימייל תקינה',
+            invalid_phone: 'אנא הזן מספר טלפון תקין',
+            sending: 'שולח...'
         },
         footer: {
             text: 'בתיה שורין - אדריכלית. כל הזכויות שמורות.'
@@ -414,68 +426,176 @@ if (sections.length > 0 && navLinks.length > 0) {
     window.addEventListener('scroll', highlightActiveSection);
 }
 
+// EmailJS Configuration
+// TODO: Replace these values with your EmailJS credentials
+const EMAILJS_CONFIG = {
+    publicKey: "HPr5b3ICR6xkjUQ2_",      // Get from: https://dashboard.emailjs.com/admin/integration
+    serviceId: "service_bb9jpan",      // Get from: https://dashboard.emailjs.com/admin/service
+    templateId: "template_t36akjx"     // Get from: https://dashboard.emailjs.com/admin/template
+};
+
+// Initialize EmailJS
+(function() {
+    if (typeof emailjs !== 'undefined' && EMAILJS_CONFIG.publicKey !== "YOUR_PUBLIC_KEY") {
+        emailjs.init(EMAILJS_CONFIG.publicKey);
+    }
+})();
+
 // Contact Form Handling
 const contactForm = document.getElementById('contactForm');
 
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Get form values
-    const formData = {
-        name: document.getElementById('name').value,
-        phone: document.getElementById('phone').value,
-        email: document.getElementById('email').value,
-        message: document.getElementById('message').value
-    };
-    
-    // Basic validation
-    if (!formData.name || !formData.phone || !formData.email || !formData.message) {
-        alert('אנא מלא את כל השדות');
-        return;
-    }
-    
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-        alert('אנא הזן כתובת אימייל תקינה');
-        return;
-    }
-    
-    // Phone validation (basic - Israeli format)
-    const phoneRegex = /^0\d{1,2}-?\d{7}$/;
-    if (!phoneRegex.test(formData.phone.replace(/-/g, ''))) {
-        alert('אנא הזן מספר טלפון תקין');
-        return;
-    }
-    
-    // In a real application, you would send this data to a server
-    // For now, we'll just show a success message
-    console.log('Form submitted:', formData);
-    
-    // Show success message
-    alert('תודה! ההודעה נשלחה בהצלחה. אחזור אליך בהקדם.');
-    
-    // Reset form
-    contactForm.reset();
-    
-    // In production, you would typically:
-    // fetch('/api/contact', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(formData)
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //     alert('תודה! ההודעה נשלחה בהצלחה.');
-    //     contactForm.reset();
-    // })
-    // .catch(error => {
-    //     alert('אירעה שגיאה. אנא נסה שוב מאוחר יותר.');
-    // });
+        e.preventDefault();
+        
+        // Get submit button
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton.textContent;
+        
+        // Get form values
+        const formData = {
+            name: document.getElementById('name').value.trim(),
+            phone: document.getElementById('phone').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            message: document.getElementById('message').value.trim()
+        };
+        
+        // Get current language for error messages
+        const lang = localStorage.getItem('language') || 'en';
+        const translations = {
+            fill_all: lang === 'he' ? 'אנא מלא את כל השדות' : 'Please fill in all fields',
+            invalid_email: lang === 'he' ? 'אנא הזן כתובת אימייל תקינה' : 'Please enter a valid email address',
+            invalid_phone: lang === 'he' ? 'אנא הזן מספר טלפון תקין' : 'Please enter a valid phone number',
+            success: lang === 'he' ? 'תודה! ההודעה נשלחה בהצלחה. אחזור אליך בהקדם.' : 'Thank you! Your message has been sent successfully. I will get back to you soon.',
+            error: lang === 'he' ? 'אירעה שגיאה. אנא נסה שוב מאוחר יותר.' : 'An error occurred. Please try again later.',
+            sending: lang === 'he' ? 'שולח...' : 'Sending...'
+        };
+        
+        // Basic validation
+        if (!formData.name || !formData.phone || !formData.email || !formData.message) {
+            alert(translations.fill_all);
+            return;
+        }
+        
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.email)) {
+            alert(translations.invalid_email);
+            return;
+        }
+        
+        // Phone validation (basic - Israeli format)
+        const phoneRegex = /^0\d{1,2}-?\d{7}$/;
+        if (!phoneRegex.test(formData.phone.replace(/-/g, ''))) {
+            alert(translations.invalid_phone);
+            return;
+        }
+        
+        // Disable submit button and show loading state
+        submitButton.disabled = true;
+        submitButton.textContent = translations.sending;
+        
+        // Prepare email template parameters
+        const templateParams = {
+            from_name: formData.name,
+            from_email: formData.email,
+            phone: formData.phone,
+            message: formData.message,
+            to_email: 'yuvalbatz@gmail.com'
+        };
+        
+        // Check if EmailJS is properly configured
+        if (typeof emailjs === 'undefined') {
+            alert(translations.error + '\nEmailJS library not loaded. Please check your internet connection.');
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
+            return;
+        }
+        
+        // Check if EmailJS credentials are configured
+        if (EMAILJS_CONFIG.serviceId === 'YOUR_SERVICE_ID' || 
+            EMAILJS_CONFIG.templateId === 'YOUR_TEMPLATE_ID' || 
+            EMAILJS_CONFIG.publicKey === 'YOUR_PUBLIC_KEY') {
+            alert('Email service is not configured yet. Please contact the website administrator.\n\nשירות המייל עדיין לא הוגדר. אנא פנה למנהל האתר.');
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
+            return;
+        }
+        
+        // Initialize EmailJS if not already initialized
+        if (EMAILJS_CONFIG.publicKey !== 'YOUR_PUBLIC_KEY') {
+            emailjs.init(EMAILJS_CONFIG.publicKey);
+        }
+        
+        // Send email using EmailJS
+        emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, templateParams)
+        .then(function(response) {
+            // Success
+            console.log('Email sent successfully!', response.status, response.text);
+            alert(translations.success);
+            contactForm.reset();
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
+        }, function(error) {
+            // Error - show detailed error message
+            console.error('EmailJS Error Details:', error);
+            let errorMessage = translations.error;
+            
+            if (error.text) {
+                errorMessage += '\n\nError: ' + error.text;
+            }
+            if (error.status) {
+                errorMessage += '\nStatus: ' + error.status;
+            }
+            
+            // Common error messages
+            if (error.text && error.text.includes('Invalid public key')) {
+                errorMessage = 'Invalid EmailJS configuration. Please check your Public Key.';
+            } else if (error.text && error.text.includes('Service not found')) {
+                errorMessage = 'Email service not found. Please check your Service ID.';
+            } else if (error.text && error.text.includes('Template not found')) {
+                errorMessage = 'Email template not found. Please check your Template ID.';
+            }
+            
+            alert(errorMessage);
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
+        });
     });
+}
+
+// Hero Background Image Slider
+const heroSection = document.querySelector('.hero');
+if (heroSection) {
+    // Array of background images - easy to add more images here
+    const heroBackgrounds = [
+        'background1.jpg',  // First image
+        'background2.jpg'   // Second image
+        // Add more images here: 'background3.jpg', 'background4.jpg', etc.
+    ];
+    
+    let currentBackgroundIndex = 0;
+    const transitionDuration = 3000; // 3 seconds in milliseconds
+    
+    // Function to change background image
+    function changeHeroBackground() {
+        if (heroBackgrounds.length === 0) return;
+        
+        // Update background image
+        const imageUrl = `url('${heroBackgrounds[currentBackgroundIndex]}')`;
+        heroSection.style.backgroundImage = imageUrl;
+        
+        // Move to next image (loop back to first after last)
+        currentBackgroundIndex = (currentBackgroundIndex + 1) % heroBackgrounds.length;
+    }
+    
+    // Set initial background
+    if (heroBackgrounds.length > 0) {
+        changeHeroBackground();
+    }
+    
+    // Change background every 3 seconds
+    setInterval(changeHeroBackground, transitionDuration);
 }
 
 // Project cards hover effect enhancement and click navigation

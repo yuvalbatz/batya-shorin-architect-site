@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Projects - Batya Shurin Architect">
+    <title>Projects - Batya Shurin</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-logo" aria-label="Home">
+                <img src="logo.jpeg" alt="Batya logo">
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link" data-translate="nav.home">Home</a></li>
+                <li><a href="projects.html" class="nav-link" data-translate="nav.projects">Projects</a></li>
+                <li><a href="about.html" class="nav-link" data-translate="nav.about">About</a></li>
+                <li><a href="contact.html" class="nav-link" data-translate="nav.contact">Contact</a></li>
+            </ul>
+            <button class="lang-switcher" id="langSwitcher" aria-label="Switch language">
+                <span id="langText">עברית</span>
+            </button>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title" data-translate="projects.title">Projects</h2>
+            <p class="section-subtitle" data-translate="projects.subtitle">A selection of projects I've completed for private clients</p>
+            
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card" data-project-id="1">
+                    <div class="project-image">
+                        <img src="picProject1/image1.jpg" alt="Private House - Ramat Gan" class="project-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="project-placeholder" style="display:none;">תמונה 1</div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title" data-translate="project.1.title">Private House - Ramat Gan</h3>
+                        <p class="project-description" data-translate="project.1.description">Complete renovation of a two-story private house, including modern interior and exterior design</p>
+                        <div class="project-details">
+                            <span class="project-tag" data-translate="tag.renovation">Renovation</span>
+                            <span class="project-tag" data-translate="tag.private_house">Private House</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card" data-project-id="2">
+                    <div class="project-image">
+                        <div class="project-placeholder">תמונה 2</div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title" data-translate="project.2.title">Penthouse Apartment - Tel Aviv</h3>
+                        <p class="project-description" data-translate="project.2.description">Design of a penthouse apartment with sea view, combining open spaces and privacy</p>
+                        <div class="project-details">
+                            <span class="project-tag" data-translate="tag.interior_design">Interior Design</span>
+                            <span class="project-tag" data-translate="tag.apartment">Apartment</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card" data-project-id="3">
+                    <div class="project-image">
+                        <div class="project-placeholder">תמונה 3</div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title" data-translate="project.3.title">New House - Herzliya</h3>
+                        <p class="project-description" data-translate="project.3.description">Planning and construction of a new house with emphasis on sustainability and natural light utilization</p>
+                        <div class="project-details">
+                            <span class="project-tag" data-translate="tag.new_construction">New Construction</span>
+                            <span class="project-tag" data-translate="tag.private_house">Private House</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card" data-project-id="4">
+                    <div class="project-image">
+                        <div class="project-placeholder">תמונה 4</div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title" data-translate="project.4.title">Apartment Renovation - Ramat Aviv</h3>
+                        <p class="project-description" data-translate="project.4.description">Comprehensive renovation of a 4-room apartment with space opening and flow creation</p>
+                        <div class="project-details">
+                            <span class="project-tag" data-translate="tag.renovation">Renovation</span>
+                            <span class="project-tag" data-translate="tag.apartment">Apartment</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card" data-project-id="5">
+                    <div class="project-image">
+                        <div class="project-placeholder">תמונה 5</div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title" data-translate="project.5.title">Cottage House - Kfar Saba</h3>
+                        <p class="project-description" data-translate="project.5.description">Renovation and expansion of a cottage house with additional floor and designed yard</p>
+                        <div class="project-details">
+                            <span class="project-tag" data-translate="tag.expansion">Expansion</span>
+                            <span class="project-tag" data-translate="tag.private_house">Private House</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card" data-project-id="6">
+                    <div class="project-image">
+                        <div class="project-placeholder">תמונה 6</div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title" data-translate="project.6.title">Studio Apartment - Tel Aviv</h3>
+                        <p class="project-description" data-translate="project.6.description">Smart design of a studio apartment with maximum storage solutions</p>
+                        <div class="project-details">
+                            <span class="project-tag" data-translate="tag.interior_design">Interior Design</span>
+                            <span class="project-tag" data-translate="tag.small_apartment">Small Apartment</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title" data-translate="contact.title">Contact</h2>
+            <p class="section-subtitle" data-translate="contact.subtitle">Let's talk about your project</p>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3 data-translate="contact.phone_label">Phone</h3>
+                        <p>050-1234567</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3 data-translate="contact.email_label">Email</h3>
+                        <p>batya@example.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3 data-translate="contact.address_label">Address</h3>
+                        <p data-translate="contact.address">Tel Aviv, Israel</p>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name" data-translate="form.name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" data-translate="form.phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-translate="form.email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-translate="form.message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" data-translate="form.submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-brand">
+                <img src="logo.jpeg" alt="Batya logo" class="footer-logo">
+            </div>
+            <p>&copy; 2024 <span data-translate="footer.text">Batya Shurin - Architect. All rights reserved.</span></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
