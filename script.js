@@ -1,3 +1,314 @@
+// Language Translation System
+const translations = {
+    en: {
+        nav: {
+            home: 'Home',
+            projects: 'Projects',
+            about: 'About',
+            contact: 'Contact'
+        },
+        hero: {
+            title: 'Batya Shorin',
+            subtitle: 'Professional Architect Specializing in Home and Apartment Design',
+            description: 'Creating functional and beautiful spaces tailored to your personal needs',
+            button: "Let's Get Started"
+        },
+        projects: {
+            title: 'Projects',
+            subtitle: 'A selection of projects I\'ve completed for private clients'
+        },
+        project: {
+            '1': {
+                title: 'Private House - Ramat Gan',
+                description: 'Complete renovation of a two-story private house, including modern interior and exterior design'
+            },
+            '2': {
+                title: 'Penthouse Apartment - Tel Aviv',
+                description: 'Design of a penthouse apartment with sea view, combining open spaces and privacy'
+            },
+            '3': {
+                title: 'New House - Herzliya',
+                description: 'Planning and construction of a new house with emphasis on sustainability and natural light utilization'
+            },
+            '4': {
+                title: 'Apartment Renovation - Ramat Aviv',
+                description: 'Comprehensive renovation of a 4-room apartment with space opening and flow creation'
+            },
+            '5': {
+                title: 'Cottage House - Kfar Saba',
+                description: 'Renovation and expansion of a cottage house with additional floor and designed yard'
+            },
+            '6': {
+                title: 'Studio Apartment - Tel Aviv',
+                description: 'Smart design of a studio apartment with maximum storage solutions'
+            }
+        },
+        tag: {
+            renovation: 'Renovation',
+            private_house: 'Private House',
+            interior_design: 'Interior Design',
+            apartment: 'Apartment',
+            new_construction: 'New Construction',
+            expansion: 'Expansion',
+            small_apartment: 'Small Apartment'
+        },
+        about: {
+            title: 'About',
+            description1: 'I am Batya Shorin, a professional architect with over 15 years of experience in planning and designing homes and apartments. I specialize in creating functional and beautiful spaces tailored precisely to each client\'s needs and lifestyle.',
+            description2: 'My approach combines creative thinking with practical solutions, with attention to detail and adherence to schedules. Every project is an opportunity for me to create something unique and perfectly suited to the client.',
+            feature1: {
+                title: 'Custom Planning',
+                description: 'Every project is specifically planned for the client and their unique needs'
+            },
+            feature2: {
+                title: 'Professional Guidance',
+                description: 'Full guidance from the planning stage until construction completion'
+            },
+            feature3: {
+                title: 'Timeline Commitment',
+                description: 'Commitment to meeting timelines and the established budget'
+            }
+        },
+        reviews: {
+            title: 'What Clients Say',
+            subtitle: 'Testimonials from satisfied clients'
+        },
+        review: {
+            '1': {
+                text: '"Batya did an amazing job! The renovation of our house went smoothly and professionally. She listened to all our requests and created a perfect space for us."',
+                name: 'Sarah Cohen',
+                location: 'Ramat Gan'
+            },
+            '2': {
+                text: '"Working with Batya was a wonderful experience. She is professional, creative, and attentive. Our apartment now looks like something from a magazine! Highly recommended."',
+                name: 'David Levi',
+                location: 'Tel Aviv'
+            },
+            '3': {
+                text: '"Batya turned our house into a dream. The design is perfect, the details are precise, and the result exceeds all expectations. Thank you for excellent work!"',
+                name: 'Michal David',
+                location: 'Herzliya'
+            },
+            '4': {
+                text: '"A professional and experienced architect. Batya guided us from the planning stage until construction completion. The result is amazing and we are very satisfied!"',
+                name: 'Yossi Mizrahi',
+                location: 'Ramat Aviv'
+            },
+            '5': {
+                text: '"Excellent work! Batya understood exactly what we wanted and created a beautiful and functional space for us. The renovation was completed on time and within budget. Highly recommended!"',
+                name: 'Ronit Israeli',
+                location: 'Kfar Saba'
+            }
+        },
+        contact: {
+            title: 'Contact',
+            subtitle: 'Let\'s talk about your project',
+            phone_label: 'Phone',
+            email_label: 'Email',
+            address_label: 'Address',
+            address: 'Tel Aviv, Israel'
+        },
+        form: {
+            name: 'Full Name',
+            phone: 'Phone',
+            email: 'Email',
+            message: 'Message',
+            submit: 'Send Message'
+        },
+        footer: {
+            text: 'Batya Shorin - Architect. All rights reserved.'
+        }
+    },
+    he: {
+        nav: {
+            home: 'בית',
+            projects: 'פרויקטים',
+            about: 'אודות',
+            contact: 'צור קשר'
+        },
+        hero: {
+            title: 'בתיה שורין',
+            subtitle: 'אדריכלית מקצועית המתמחה בעיצוב בתים ודירות',
+            description: 'יוצרת חללים פונקציונליים ויפים המותאמים לצרכים האישיים שלכם',
+            button: 'בואו נתחיל'
+        },
+        projects: {
+            title: 'פרויקטים',
+            subtitle: 'מבחר פרויקטים שביצעתי עבור לקוחות פרטיים'
+        },
+        project: {
+            '1': {
+                title: 'בית פרטי - רמת גן',
+                description: 'שיפוץ מלא של בית פרטי בן שתי קומות, כולל עיצוב פנים וחוץ מודרני'
+            },
+            '2': {
+                title: 'דירת פנטהאוז - תל אביב',
+                description: 'עיצוב דירת פנטהאוז עם נוף לים, שילוב של חללים פתוחים ופרטיות'
+            },
+            '3': {
+                title: 'בית חדש - הרצליה',
+                description: 'תכנון ובנייה של בית חדש עם דגש על קיימות וניצול אור טבעי'
+            },
+            '4': {
+                title: 'שיפוץ דירה - רמת אביב',
+                description: 'שיפוץ מקיף של דירת 4 חדרים עם פתיחת חללים ויצירת זרימה'
+            },
+            '5': {
+                title: 'בית קוטג\' - כפר סבא',
+                description: 'שיפוץ והרחבה של בית קוטג\' עם תוספת קומה וחצר מעוצבת'
+            },
+            '6': {
+                title: 'דירת סטודיו - תל אביב',
+                description: 'עיצוב חכם של דירת סטודיו עם פתרונות אחסון מקסימליים'
+            }
+        },
+        tag: {
+            renovation: 'שיפוץ',
+            private_house: 'בית פרטי',
+            interior_design: 'עיצוב פנים',
+            apartment: 'דירה',
+            new_construction: 'בנייה חדשה',
+            expansion: 'הרחבה',
+            small_apartment: 'דירה קטנה'
+        },
+        about: {
+            title: 'אודות',
+            description1: 'אני בתיה שורין, אדריכלית מקצועית עם ניסיון של למעלה מ-15 שנים בתכנון ועיצוב בתים ודירות. אני מתמחה ביצירת חללים פונקציונליים ויפים המותאמים בדיוק לצרכים ולסגנון החיים של כל לקוח.',
+            description2: 'הגישה שלי משלבת חשיבה יצירתית עם פתרונות מעשיים, תוך הקפדה על פרטים ועמידה בלוחות זמנים. כל פרויקט הוא עבורי הזדמנות ליצור משהו ייחודי ומתאים בדיוק ללקוח.',
+            feature1: {
+                title: 'תכנון מותאם אישית',
+                description: 'כל פרויקט מתוכנן במיוחד עבור הלקוח והצרכים הייחודיים שלו'
+            },
+            feature2: {
+                title: 'ליווי מקצועי',
+                description: 'ליווי מלא משלב התכנון ועד לסיום הבנייה'
+            },
+            feature3: {
+                title: 'עמידה בלוחות זמנים',
+                description: 'מחויבות לעמידה בלוחות זמנים ובתקציב שנקבע'
+            }
+        },
+        reviews: {
+            title: 'מה הלקוחות אומרים',
+            subtitle: 'המלצות מלקוחות מרוצים'
+        },
+        review: {
+            '1': {
+                text: '"בתיה עשתה עבודה מדהימה! השיפוץ של הבית שלנו עבר בצורה חלקה ומקצועית. היא הקשיבה לכל הבקשות שלנו ויצרה חלל מושלם עבורנו."',
+                name: 'שרה כהן',
+                location: 'רמת גן'
+            },
+            '2': {
+                text: '"העבודה עם בתיה הייתה חוויה נהדרת. היא מקצועית, יצירתית וקשובה. הדירה שלנו נראית עכשיו כמו משהו ממגזין! ממליצה בחום."',
+                name: 'דוד לוי',
+                location: 'תל אביב'
+            },
+            '3': {
+                text: '"בתיה הפכה את הבית שלנו לחלום. העיצוב מושלם, הפרטים מדויקים והתוצאה עולה על כל הציפיות. תודה רבה על עבודה מעולה!"',
+                name: 'מיכל דוד',
+                location: 'הרצליה'
+            },
+            '4': {
+                text: '"אדריכלית מקצועית ומנוסה. בתיה ליוותה אותנו משלב התכנון ועד לסיום הבנייה. התוצאה מדהימה ואנחנו מאוד מרוצים!"',
+                name: 'יוסי מזרחי',
+                location: 'רמת אביב'
+            },
+            '5': {
+                text: '"עבודה מעולה! בתיה הבינה בדיוק מה אנחנו רוצים ויצרה עבורנו חלל יפה ופונקציונלי. השיפוץ עבר בזמן ובתקציב. מומלץ מאוד!"',
+                name: 'רונית ישראלי',
+                location: 'כפר סבא'
+            }
+        },
+        contact: {
+            title: 'צור קשר',
+            subtitle: 'בואו נדבר על הפרויקט שלכם',
+            phone_label: 'טלפון',
+            email_label: 'אימייל',
+            address_label: 'כתובת',
+            address: 'תל אביב, ישראל'
+        },
+        form: {
+            name: 'שם מלא',
+            phone: 'טלפון',
+            email: 'אימייל',
+            message: 'הודעה',
+            submit: 'שלח הודעה'
+        },
+        footer: {
+            text: 'בתיה שורין - אדריכלית. כל הזכויות שמורות.'
+        }
+    }
+};
+
+// Get current language from localStorage or default to 'en'
+let currentLang = localStorage.getItem('language') || 'en';
+
+// Function to get nested translation value
+function getTranslation(key, lang) {
+    const keys = key.split('.');
+    let value = translations[lang];
+    for (const k of keys) {
+        value = value?.[k];
+    }
+    return value || key;
+}
+
+// Function to translate the page
+function translatePage(lang) {
+    currentLang = lang;
+    localStorage.setItem('language', lang);
+    
+    // Update HTML lang and dir attributes
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
+    document.body.style.direction = lang === 'he' ? 'rtl' : 'ltr';
+    document.body.style.textAlign = lang === 'he' ? 'right' : 'left';
+    
+    // Update all elements with data-translate attribute
+    document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        const translation = getTranslation(key, lang);
+        if (translation) {
+            element.textContent = translation;
+        }
+    });
+    
+    // Update language switcher text
+    const langText = document.getElementById('langText');
+    if (langText) {
+        langText.textContent = lang === 'en' ? 'עברית' : 'English';
+    }
+    
+    // Update meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+        metaDescription.content = lang === 'en' 
+            ? 'Architecture Portfolio - Professional projects for home and apartment design'
+            : 'פורטפוליו אדריכלות - פרויקטים מקצועיים לעיצוב בתים ודירות';
+    }
+    
+    // Update title
+    document.title = lang === 'en' 
+        ? 'Batya Shorin - Architect'
+        : 'בתיה שורין - אדריכלית';
+}
+
+// Initialize language on page load
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => translatePage(currentLang));
+} else {
+    translatePage(currentLang);
+}
+
+// Language switcher button
+const langSwitcher = document.getElementById('langSwitcher');
+if (langSwitcher) {
+    langSwitcher.addEventListener('click', () => {
+        const newLang = currentLang === 'en' ? 'he' : 'en';
+        translatePage(newLang);
+    });
+}
+
 // Mobile Navigation Toggle
 const navToggle = document.getElementById('navToggle');
 const navMenu = document.getElementById('navMenu');

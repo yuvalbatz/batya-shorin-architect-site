@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="פורטפוליו אדריכלות - פרויקטים מקצועיים לעיצוב בתים ודירות">
-    <title>בתיה שורין - אדריכלית</title>
+    <meta name="description" content="Architecture Portfolio - Professional projects for home and apartment design">
+    <title>Batya Shorin - Architect</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,13 +12,15 @@
     <nav class="navbar" id="navbar">
         <div class="container">
             <div class="nav-phone">050-1234567</div>
-            <div class="nav-brand">בתיה שורין</div>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#home" class="nav-link">בית</a></li>
-                <li><a href="#projects" class="nav-link">פרויקטים</a></li>
-                <li><a href="#about" class="nav-link">אודות</a></li>
-                <li><a href="#contact" class="nav-link">צור קשר</a></li>
+                <li><a href="#home" class="nav-link" data-translate="nav.home">Home</a></li>
+                <li><a href="#projects" class="nav-link" data-translate="nav.projects">Projects</a></li>
+                <li><a href="#about" class="nav-link" data-translate="nav.about">About</a></li>
+                <li><a href="#contact" class="nav-link" data-translate="nav.contact">Contact</a></li>
             </ul>
+            <button class="lang-switcher" id="langSwitcher" aria-label="Switch language">
+                <span id="langText">עברית</span>
+            </button>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
                 <span></span>
                 <span></span>
@@ -30,10 +32,10 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">בתיה שורין</h1>
-            <p class="hero-subtitle">אדריכלית מקצועית המתמחה בעיצוב בתים ודירות</p>
-            <p class="hero-description">יוצרת חללים פונקציונליים ויפים המותאמים לצרכים האישיים שלכם</p>
-            <a href="#contact" class="btn btn-primary">בואו נתחיל</a>
+            <h1 class="hero-title" data-translate="hero.title">Batya Shorin</h1>
+            <p class="hero-subtitle" data-translate="hero.subtitle">Professional Architect Specializing in Home and Apartment Design</p>
+            <p class="hero-description" data-translate="hero.description">Creating functional and beautiful spaces tailored to your personal needs</p>
+            <a href="#contact" class="btn btn-primary" data-translate="hero.button">Let's Get Started</a>
         </div>
         <div class="hero-image">
             <div class="hero-placeholder"></div>
@@ -43,8 +45,8 @@
     <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
-            <h2 class="section-title">פרויקטים</h2>
-            <p class="section-subtitle">מבחר פרויקטים שביצעתי עבור לקוחות פרטיים</p>
+            <h2 class="section-title" data-translate="projects.title">Projects</h2>
+            <p class="section-subtitle" data-translate="projects.subtitle">A selection of projects I've completed for private clients</p>
             
             <div class="projects-grid">
                 <!-- Project 1 -->
@@ -53,11 +55,11 @@
                         <div class="project-placeholder">תמונה 1</div>
                     </div>
                     <div class="project-info">
-                        <h3 class="project-title">בית פרטי - רמת גן</h3>
-                        <p class="project-description">שיפוץ מלא של בית פרטי בן שתי קומות, כולל עיצוב פנים וחוץ מודרני</p>
+                        <h3 class="project-title" data-translate="project.1.title">Private House - Ramat Gan</h3>
+                        <p class="project-description" data-translate="project.1.description">Complete renovation of a two-story private house, including modern interior and exterior design</p>
                         <div class="project-details">
-                            <span class="project-tag">שיפוץ</span>
-                            <span class="project-tag">בית פרטי</span>
+                            <span class="project-tag" data-translate="tag.renovation">Renovation</span>
+                            <span class="project-tag" data-translate="tag.private_house">Private House</span>
                         </div>
                     </div>
                 </div>
@@ -68,11 +70,11 @@
                         <div class="project-placeholder">תמונה 2</div>
                     </div>
                     <div class="project-info">
-                        <h3 class="project-title">דירת פנטהאוז - תל אביב</h3>
-                        <p class="project-description">עיצוב דירת פנטהאוז עם נוף לים, שילוב של חללים פתוחים ופרטיות</p>
+                        <h3 class="project-title" data-translate="project.2.title">Penthouse Apartment - Tel Aviv</h3>
+                        <p class="project-description" data-translate="project.2.description">Design of a penthouse apartment with sea view, combining open spaces and privacy</p>
                         <div class="project-details">
-                            <span class="project-tag">עיצוב פנים</span>
-                            <span class="project-tag">דירה</span>
+                            <span class="project-tag" data-translate="tag.interior_design">Interior Design</span>
+                            <span class="project-tag" data-translate="tag.apartment">Apartment</span>
                         </div>
                     </div>
                 </div>
@@ -83,11 +85,11 @@
                         <div class="project-placeholder">תמונה 3</div>
                     </div>
                     <div class="project-info">
-                        <h3 class="project-title">בית חדש - הרצליה</h3>
-                        <p class="project-description">תכנון ובנייה של בית חדש עם דגש על קיימות וניצול אור טבעי</p>
+                        <h3 class="project-title" data-translate="project.3.title">New House - Herzliya</h3>
+                        <p class="project-description" data-translate="project.3.description">Planning and construction of a new house with emphasis on sustainability and natural light utilization</p>
                         <div class="project-details">
-                            <span class="project-tag">בנייה חדשה</span>
-                            <span class="project-tag">בית פרטי</span>
+                            <span class="project-tag" data-translate="tag.new_construction">New Construction</span>
+                            <span class="project-tag" data-translate="tag.private_house">Private House</span>
                         </div>
                     </div>
                 </div>
@@ -98,11 +100,11 @@
                         <div class="project-placeholder">תמונה 4</div>
                     </div>
                     <div class="project-info">
-                        <h3 class="project-title">שיפוץ דירה - רמת אביב</h3>
-                        <p class="project-description">שיפוץ מקיף של דירת 4 חדרים עם פתיחת חללים ויצירת זרימה</p>
+                        <h3 class="project-title" data-translate="project.4.title">Apartment Renovation - Ramat Aviv</h3>
+                        <p class="project-description" data-translate="project.4.description">Comprehensive renovation of a 4-room apartment with space opening and flow creation</p>
                         <div class="project-details">
-                            <span class="project-tag">שיפוץ</span>
-                            <span class="project-tag">דירה</span>
+                            <span class="project-tag" data-translate="tag.renovation">Renovation</span>
+                            <span class="project-tag" data-translate="tag.apartment">Apartment</span>
                         </div>
                     </div>
                 </div>
@@ -113,11 +115,11 @@
                         <div class="project-placeholder">תמונה 5</div>
                     </div>
                     <div class="project-info">
-                        <h3 class="project-title">בית קוטג' - כפר סבא</h3>
-                        <p class="project-description">שיפוץ והרחבה של בית קוטג' עם תוספת קומה וחצר מעוצבת</p>
+                        <h3 class="project-title" data-translate="project.5.title">Cottage House - Kfar Saba</h3>
+                        <p class="project-description" data-translate="project.5.description">Renovation and expansion of a cottage house with additional floor and designed yard</p>
                         <div class="project-details">
-                            <span class="project-tag">הרחבה</span>
-                            <span class="project-tag">בית פרטי</span>
+                            <span class="project-tag" data-translate="tag.expansion">Expansion</span>
+                            <span class="project-tag" data-translate="tag.private_house">Private House</span>
                         </div>
                     </div>
                 </div>
@@ -128,11 +130,11 @@
                         <div class="project-placeholder">תמונה 6</div>
                     </div>
                     <div class="project-info">
-                        <h3 class="project-title">דירת סטודיו - תל אביב</h3>
-                        <p class="project-description">עיצוב חכם של דירת סטודיו עם פתרונות אחסון מקסימליים</p>
+                        <h3 class="project-title" data-translate="project.6.title">Studio Apartment - Tel Aviv</h3>
+                        <p class="project-description" data-translate="project.6.description">Smart design of a studio apartment with maximum storage solutions</p>
                         <div class="project-details">
-                            <span class="project-tag">עיצוב פנים</span>
-                            <span class="project-tag">דירה קטנה</span>
+                            <span class="project-tag" data-translate="tag.interior_design">Interior Design</span>
+                            <span class="project-tag" data-translate="tag.small_apartment">Small Apartment</span>
                         </div>
                     </div>
                 </div>
@@ -145,27 +147,27 @@
         <div class="container">
             <div class="about-content">
                 <div class="about-text">
-                    <h2 class="section-title">אודות</h2>
-                    <p class="about-description">
-                        אני בתיה שורין, אדריכלית מקצועית עם ניסיון של למעלה מ-15 שנים בתכנון ועיצוב בתים ודירות.
-                        אני מתמחה ביצירת חללים פונקציונליים ויפים המותאמים בדיוק לצרכים ולסגנון החיים של כל לקוח.
+                    <h2 class="section-title" data-translate="about.title">About</h2>
+                    <p class="about-description" data-translate="about.description1">
+                        I am Batya Shorin, a professional architect with over 15 years of experience in planning and designing homes and apartments.
+                        I specialize in creating functional and beautiful spaces tailored precisely to each client's needs and lifestyle.
                     </p>
-                    <p class="about-description">
-                        הגישה שלי משלבת חשיבה יצירתית עם פתרונות מעשיים, תוך הקפדה על פרטים ועמידה בלוחות זמנים.
-                        כל פרויקט הוא עבורי הזדמנות ליצור משהו ייחודי ומתאים בדיוק ללקוח.
+                    <p class="about-description" data-translate="about.description2">
+                        My approach combines creative thinking with practical solutions, with attention to detail and adherence to schedules.
+                        Every project is an opportunity for me to create something unique and perfectly suited to the client.
                     </p>
                     <div class="about-features">
                         <div class="feature-item">
-                            <h3>תכנון מותאם אישית</h3>
-                            <p>כל פרויקט מתוכנן במיוחד עבור הלקוח והצרכים הייחודיים שלו</p>
+                            <h3 data-translate="about.feature1.title">Custom Planning</h3>
+                            <p data-translate="about.feature1.description">Every project is specifically planned for the client and their unique needs</p>
                         </div>
                         <div class="feature-item">
-                            <h3>ליווי מקצועי</h3>
-                            <p>ליווי מלא משלב התכנון ועד לסיום הבנייה</p>
+                            <h3 data-translate="about.feature2.title">Professional Guidance</h3>
+                            <p data-translate="about.feature2.description">Full guidance from the planning stage until construction completion</p>
                         </div>
                         <div class="feature-item">
-                            <h3>עמידה בלוחות זמנים</h3>
-                            <p>מחויבות לעמידה בלוחות זמנים ובתקציב שנקבע</p>
+                            <h3 data-translate="about.feature3.title">Timeline Commitment</h3>
+                            <p data-translate="about.feature3.description">Commitment to meeting timelines and the established budget</p>
                         </div>
                     </div>
                 </div>
@@ -179,8 +181,8 @@
     <!-- Reviews Section -->
     <section id="reviews" class="reviews">
         <div class="container">
-            <h2 class="section-title">מה הלקוחות אומרים</h2>
-            <p class="section-subtitle">המלצות מלקוחות מרוצים</p>
+            <h2 class="section-title" data-translate="reviews.title">What Clients Say</h2>
+            <p class="section-subtitle" data-translate="reviews.subtitle">Testimonials from satisfied clients</p>
             
             <div class="reviews-slider-container">
                 <div class="reviews-slider-wrapper">
@@ -191,11 +193,11 @@
                                 <div class="review-stars">
                                     <span>★★★★★</span>
                                 </div>
-                                <p class="review-text">"בתיה עשתה עבודה מדהימה! השיפוץ של הבית שלנו עבר בצורה חלקה ומקצועית. היא הקשיבה לכל הבקשות שלנו ויצרה חלל מושלם עבורנו."</p>
+                                <p class="review-text" data-translate="review.1.text">"Batya did an amazing job! The renovation of our house went smoothly and professionally. She listened to all our requests and created a perfect space for us."</p>
                                 <div class="review-author">
                                     <div class="review-author-info">
-                                        <h4 class="review-author-name">שרה כהן</h4>
-                                        <p class="review-author-location">רמת גן</p>
+                                        <h4 class="review-author-name" data-translate="review.1.name">Sarah Cohen</h4>
+                                        <p class="review-author-location" data-translate="review.1.location">Ramat Gan</p>
                                     </div>
                                 </div>
                             </div>
@@ -207,11 +209,11 @@
                                 <div class="review-stars">
                                     <span>★★★★★</span>
                                 </div>
-                                <p class="review-text">"העבודה עם בתיה הייתה חוויה נהדרת. היא מקצועית, יצירתית וקשובה. הדירה שלנו נראית עכשיו כמו משהו ממגזין! ממליצה בחום."</p>
+                                <p class="review-text" data-translate="review.2.text">"Working with Batya was a wonderful experience. She is professional, creative, and attentive. Our apartment now looks like something from a magazine! Highly recommended."</p>
                                 <div class="review-author">
                                     <div class="review-author-info">
-                                        <h4 class="review-author-name">דוד לוי</h4>
-                                        <p class="review-author-location">תל אביב</p>
+                                        <h4 class="review-author-name" data-translate="review.2.name">David Levi</h4>
+                                        <p class="review-author-location" data-translate="review.2.location">Tel Aviv</p>
                                     </div>
                                 </div>
                             </div>
@@ -223,11 +225,11 @@
                                 <div class="review-stars">
                                     <span>★★★★★</span>
                                 </div>
-                                <p class="review-text">"בתיה הפכה את הבית שלנו לחלום. העיצוב מושלם, הפרטים מדויקים והתוצאה עולה על כל הציפיות. תודה רבה על עבודה מעולה!"</p>
+                                <p class="review-text" data-translate="review.3.text">"Batya turned our house into a dream. The design is perfect, the details are precise, and the result exceeds all expectations. Thank you for excellent work!"</p>
                                 <div class="review-author">
                                     <div class="review-author-info">
-                                        <h4 class="review-author-name">מיכל דוד</h4>
-                                        <p class="review-author-location">הרצליה</p>
+                                        <h4 class="review-author-name" data-translate="review.3.name">Michal David</h4>
+                                        <p class="review-author-location" data-translate="review.3.location">Herzliya</p>
                                     </div>
                                 </div>
                             </div>
@@ -239,11 +241,11 @@
                                 <div class="review-stars">
                                     <span>★★★★★</span>
                                 </div>
-                                <p class="review-text">"אדריכלית מקצועית ומנוסה. בתיה ליוותה אותנו משלב התכנון ועד לסיום הבנייה. התוצאה מדהימה ואנחנו מאוד מרוצים!"</p>
+                                <p class="review-text" data-translate="review.4.text">"A professional and experienced architect. Batya guided us from the planning stage until construction completion. The result is amazing and we are very satisfied!"</p>
                                 <div class="review-author">
                                     <div class="review-author-info">
-                                        <h4 class="review-author-name">יוסי מזרחי</h4>
-                                        <p class="review-author-location">רמת אביב</p>
+                                        <h4 class="review-author-name" data-translate="review.4.name">Yossi Mizrahi</h4>
+                                        <p class="review-author-location" data-translate="review.4.location">Ramat Aviv</p>
                                     </div>
                                 </div>
                             </div>
@@ -255,11 +257,11 @@
                                 <div class="review-stars">
                                     <span>★★★★★</span>
                                 </div>
-                                <p class="review-text">"עבודה מעולה! בתיה הבינה בדיוק מה אנחנו רוצים ויצרה עבורנו חלל יפה ופונקציונלי. השיפוץ עבר בזמן ובתקציב. מומלץ מאוד!"</p>
+                                <p class="review-text" data-translate="review.5.text">"Excellent work! Batya understood exactly what we wanted and created a beautiful and functional space for us. The renovation was completed on time and within budget. Highly recommended!"</p>
                                 <div class="review-author">
                                     <div class="review-author-info">
-                                        <h4 class="review-author-name">רונית ישראלי</h4>
-                                        <p class="review-author-location">כפר סבא</p>
+                                        <h4 class="review-author-name" data-translate="review.5.name">Ronit Israeli</h4>
+                                        <p class="review-author-location" data-translate="review.5.location">Kfar Saba</p>
                                     </div>
                                 </div>
                             </div>
@@ -278,43 +280,43 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">צור קשר</h2>
-            <p class="section-subtitle">בואו נדבר על הפרויקט שלכם</p>
+            <h2 class="section-title" data-translate="contact.title">Contact</h2>
+            <p class="section-subtitle" data-translate="contact.subtitle">Let's talk about your project</p>
             
             <div class="contact-content">
                 <div class="contact-info">
                     <div class="contact-item">
-                        <h3>טלפון</h3>
+                        <h3 data-translate="contact.phone_label">Phone</h3>
                         <p>050-1234567</p>
                     </div>
                     <div class="contact-item">
-                        <h3>אימייל</h3>
+                        <h3 data-translate="contact.email_label">Email</h3>
                         <p>batya@example.com</p>
                     </div>
                     <div class="contact-item">
-                        <h3>כתובת</h3>
-                        <p>תל אביב, ישראל</p>
+                        <h3 data-translate="contact.address_label">Address</h3>
+                        <p data-translate="contact.address">Tel Aviv, Israel</p>
                     </div>
                 </div>
 
                 <form class="contact-form" id="contactForm">
                     <div class="form-group">
-                        <label for="name">שם מלא</label>
+                        <label for="name" data-translate="form.name">Full Name</label>
                         <input type="text" id="name" name="name" required>
                     </div>
                     <div class="form-group">
-                        <label for="phone">טלפון</label>
+                        <label for="phone" data-translate="form.phone">Phone</label>
                         <input type="tel" id="phone" name="phone" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">אימייל</label>
+                        <label for="email" data-translate="form.email">Email</label>
                         <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="message">הודעה</label>
+                        <label for="message" data-translate="form.message">Message</label>
                         <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">שלח הודעה</button>
+                    <button type="submit" class="btn btn-primary" data-translate="form.submit">Send Message</button>
                 </form>
             </div>
         </div>
@@ -323,7 +325,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 בתיה שורין - אדריכלית. כל הזכויות שמורות.</p>
+            <p>&copy; 2024 <span data-translate="footer.text">Batya Shorin - Architect. All rights reserved.</span></p>
         </div>
     </footer>
 

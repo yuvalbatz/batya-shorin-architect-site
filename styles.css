@@ -99,7 +99,7 @@ body {
     letter-spacing: 3px;
     flex-shrink: 0;
     width: 150px;
-    text-align: right;
+    text-align: center;
     text-transform: uppercase;
 }
 
@@ -114,6 +114,12 @@ body {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+}
+
+[dir="rtl"] .nav-menu {
+    left: auto;
+    right: 50%;
+    transform: translateX(50%);
 }
 
 .nav-link {
@@ -143,6 +149,31 @@ body {
 
 .nav-link:hover::after {
     width: 100%;
+}
+
+.lang-switcher {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: var(--transition);
+    letter-spacing: 0.5px;
+    margin-left: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+[dir="rtl"] .lang-switcher {
+    margin-left: 0;
+    margin-right: 2rem;
+}
+
+.lang-switcher:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--accent-color);
 }
 
 .nav-toggle {
@@ -854,6 +885,18 @@ section {
     .nav-brand {
         text-align: center;
         width: auto;
+    }
+
+    .lang-switcher {
+        margin-left: 1rem;
+        margin-right: 0;
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+
+    [dir="rtl"] .lang-switcher {
+        margin-left: 0;
+        margin-right: 1rem;
     }
 
     .nav-toggle {
