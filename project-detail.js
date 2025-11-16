@@ -1,36 +1,75 @@
 // Project data - This will be populated with actual images later
 const projectsData = {
     '1': {
-        title: 'בית פרטי - רמת גן',
-        description: 'שיפוץ מלא של בית פרטי בן שתי קומות, כולל עיצוב פנים וחוץ מודרני',
+        title: {
+            en: 'Private House - Ramat Gan',
+            he: 'בית פרטי - רמת גן'
+        },
+        description: {
+            en: 'Complete renovation of a two-story private house, including modern interior and exterior design',
+            he: 'שיפוץ מלא של בית פרטי בן שתי קומות, כולל עיצוב פנים וחוץ מודרני'
+        },
         images: [] // Will be populated with image paths later
     },
     '2': {
-        title: 'דירת פנטהאוז - תל אביב',
-        description: 'עיצוב דירת פנטהאוז עם נוף לים, שילוב של חללים פתוחים ופרטיות',
+        title: {
+            en: 'Penthouse Apartment - Tel Aviv',
+            he: 'דירת פנטהאוז - תל אביב'
+        },
+        description: {
+            en: 'Design of a penthouse apartment with sea view, combining open spaces and privacy',
+            he: 'עיצוב דירת פנטהאוז עם נוף לים, שילוב של חללים פתוחים ופרטיות'
+        },
         images: []
     },
     '3': {
-        title: 'בית חדש - הרצליה',
-        description: 'תכנון ובנייה של בית חדש עם דגש על קיימות וניצול אור טבעי',
+        title: {
+            en: 'New House - Herzliya',
+            he: 'בית חדש - הרצליה'
+        },
+        description: {
+            en: 'Planning and construction of a new house with emphasis on sustainability and natural light utilization',
+            he: 'תכנון ובנייה של בית חדש עם דגש על קיימות וניצול אור טבעי'
+        },
         images: []
     },
     '4': {
-        title: 'שיפוץ דירה - רמת אביב',
-        description: 'שיפוץ מקיף של דירת 4 חדרים עם פתיחת חללים ויצירת זרימה',
+        title: {
+            en: 'Apartment Renovation - Ramat Aviv',
+            he: 'שיפוץ דירה - רמת אביב'
+        },
+        description: {
+            en: 'Comprehensive renovation of a 4-room apartment with space opening and flow creation',
+            he: 'שיפוץ מקיף של דירת 4 חדרים עם פתיחת חללים ויצירת זרימה'
+        },
         images: []
     },
     '5': {
-        title: 'בית קוטג\' - כפר סבא',
-        description: 'שיפוץ והרחבה של בית קוטג\' עם תוספת קומה וחצר מעוצבת',
+        title: {
+            en: 'Cottage House - Kfar Saba',
+            he: 'בית קוטג\' - כפר סבא'
+        },
+        description: {
+            en: 'Renovation and expansion of a cottage house with additional floor and designed yard',
+            he: 'שיפוץ והרחבה של בית קוטג\' עם תוספת קומה וחצר מעוצבת'
+        },
         images: []
     },
     '6': {
-        title: 'דירת סטודיו - תל אביב',
-        description: 'עיצוב חכם של דירת סטודיו עם פתרונות אחסון מקסימליים',
+        title: {
+            en: 'Studio Apartment - Tel Aviv',
+            he: 'דירת סטודיו - תל אביב'
+        },
+        description: {
+            en: 'Smart design of a studio apartment with maximum storage solutions',
+            he: 'עיצוב חכם של דירת סטודיו עם פתרונות אחסון מקסימליים'
+        },
         images: []
     }
 };
+
+// Get current language from localStorage or default to 'en'
+let currentLang = localStorage.getItem('language') || 'en';
 
 // Get project ID from URL
 function getProjectIdFromURL() {
@@ -50,15 +89,49 @@ function initProjectDetail() {
     
     const project = projectsData[projectId];
     
-    // Set project title
-    const titleElement = document.getElementById('projectTitle');
-    if (titleElement) {
-        titleElement.textContent = project.title;
-    }
+    // Update project title based on current language
+    updateProjectTitle(project);
     
     // Initialize slider
     initSlider(project);
 }
+
+// Update project title based on current language
+function updateProjectTitle(project) {
+    const titleElement = document.getElementById('projectTitle');
+    if (titleElement && project.title) {
+        titleElement.textContent = project.title[currentLang] || project.title.en;
+    }
+}
+
+// Listen for language changes
+window.addEventListener('storage', (e) => {
+    if (e.key === 'language') {
+        currentLang = e.newValue || 'en';
+        const projectId = getProjectIdFromURL();
+        if (projectId && projectsData[projectId]) {
+            updateProjectTitle(projectsData[projectId]);
+        }
+    }
+});
+
+// Check for language changes from script.js
+setInterval(() => {
+    const newLang = localStorage.getItem('language') || 'en';
+    if (newLang !== currentLang) {
+        currentLang = newLang;
+        const projectId = getProjectIdFromURL();
+        if (projectId && projectsData[projectId]) {
+            updateProjectTitle(projectsData[projectId]);
+            // Reinitialize slider with new language
+            initSlider(projectsData[projectId]);
+        }
+    }
+}, 100);
+
+// Make updateProjectTitle available globally for script.js
+window.updateProjectTitle = updateProjectTitle;
+window.projectsData = projectsData;
 
 // Initialize slider with project images
 function initSlider(project) {
@@ -88,14 +161,16 @@ function initSlider(project) {
             // If image exists, create img element
             const img = document.createElement('img');
             img.src = project.images[i];
-            img.alt = `${project.title} - תמונה ${i + 1}`;
+            const imageText = currentLang === 'he' ? 'תמונה' : 'Image';
+            img.alt = `${project.title[currentLang] || project.title.en} - ${imageText} ${i + 1}`;
             img.className = 'slider-image';
             slide.appendChild(img);
         } else {
             // Create placeholder
             const placeholder = document.createElement('div');
             placeholder.className = 'slider-placeholder';
-            placeholder.textContent = `${project.title} - תמונה ${i + 1}`;
+            const imageText = currentLang === 'he' ? 'תמונה' : 'Image';
+            placeholder.textContent = `${project.title[currentLang] || project.title.en} - ${imageText} ${i + 1}`;
             slide.appendChild(placeholder);
         }
         
@@ -106,7 +181,8 @@ function initSlider(project) {
         indicator.className = 'slider-indicator';
         if (i === 0) indicator.classList.add('active');
         indicator.setAttribute('data-slide-index', i);
-        indicator.setAttribute('aria-label', `עבור לתמונה ${i + 1}`);
+        const imageText = currentLang === 'he' ? 'עבור לתמונה' : 'Go to image';
+        indicator.setAttribute('aria-label', `${imageText} ${i + 1}`);
         indicator.addEventListener('click', () => goToSlide(i));
         sliderIndicators.appendChild(indicator);
     }

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="פרטי פרויקט - בתיה שורין אדריכלית">
-    <title>פרטי פרויקט - בתיה שורין</title>
+    <meta name="description" content="Project Details - Batya Shorin Architect">
+    <title>Project Details - Batya Shorin</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,13 +12,15 @@
     <nav class="navbar" id="navbar">
         <div class="container">
             <div class="nav-phone">050-1234567</div>
-            <div class="nav-brand">בתיה שורין</div>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html#home" class="nav-link">בית</a></li>
-                <li><a href="index.html#projects" class="nav-link">פרויקטים</a></li>
-                <li><a href="index.html#about" class="nav-link">אודות</a></li>
-                <li><a href="index.html#contact" class="nav-link">צור קשר</a></li>
+                <li><a href="index.html#home" class="nav-link" data-translate="nav.home">Home</a></li>
+                <li><a href="index.html#projects" class="nav-link" data-translate="nav.projects">Projects</a></li>
+                <li><a href="index.html#about" class="nav-link" data-translate="nav.about">About</a></li>
+                <li><a href="index.html#contact" class="nav-link" data-translate="nav.contact">Contact</a></li>
             </ul>
+            <button class="lang-switcher" id="langSwitcher" aria-label="Switch language">
+                <span id="langText">עברית</span>
+            </button>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
                 <span></span>
                 <span></span>
@@ -32,18 +34,18 @@
         <div class="container">
             <!-- Back Button -->
             <a href="index.html#projects" class="back-button">
-                <span>← חזרה לפרויקטים</span>
+                <span data-translate="project_detail.back">← Back to Projects</span>
             </a>
 
             <!-- Project Heading -->
             <div class="project-detail-header">
-                <h1 class="project-detail-title" id="projectTitle">שם הפרויקט</h1>
+                <h1 class="project-detail-title" id="projectTitle">Project Name</h1>
             </div>
 
             <!-- Image Slider -->
             <div class="image-slider-container">
                 <div class="slider-wrapper">
-                    <button class="slider-btn slider-btn-prev" id="prevBtn" aria-label="תמונה קודמת">
+                    <button class="slider-btn slider-btn-prev" id="prevBtn" aria-label="Previous image">
                         <span>‹</span>
                     </button>
                     
@@ -53,7 +55,7 @@
                         </div>
                     </div>
                     
-                    <button class="slider-btn slider-btn-next" id="nextBtn" aria-label="תמונה הבאה">
+                    <button class="slider-btn slider-btn-next" id="nextBtn" aria-label="Next image">
                         <span>›</span>
                     </button>
                 </div>
@@ -69,7 +71,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 בתיה שורין - אדריכלית. כל הזכויות שמורות.</p>
+            <p>&copy; 2024 <span data-translate="footer.text">Batya Shorin - Architect. All rights reserved.</span></p>
         </div>
     </footer>
 

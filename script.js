@@ -117,6 +117,9 @@ const translations = {
         },
         footer: {
             text: 'Batya Shorin - Architect. All rights reserved.'
+        },
+        project_detail: {
+            back: '← Back to Projects'
         }
     },
     he: {
@@ -236,6 +239,9 @@ const translations = {
         },
         footer: {
             text: 'בתיה שורין - אדריכלית. כל הזכויות שמורות.'
+        },
+        project_detail: {
+            back: '← חזרה לפרויקטים'
         }
     }
 };
@@ -282,15 +288,35 @@ function translatePage(lang) {
     // Update meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-        metaDescription.content = lang === 'en' 
-            ? 'Architecture Portfolio - Professional projects for home and apartment design'
-            : 'פורטפוליו אדריכלות - פרויקטים מקצועיים לעיצוב בתים ודירות';
+        if (window.location.pathname.includes('project-detail')) {
+            metaDescription.content = lang === 'en' 
+                ? 'Project Details - Batya Shorin Architect'
+                : 'פרטי פרויקט - בתיה שורין אדריכלית';
+        } else {
+            metaDescription.content = lang === 'en' 
+                ? 'Architecture Portfolio - Professional projects for home and apartment design'
+                : 'פורטפוליו אדריכלות - פרויקטים מקצועיים לעיצוב בתים ודירות';
+        }
     }
     
     // Update title
-    document.title = lang === 'en' 
-        ? 'Batya Shorin - Architect'
-        : 'בתיה שורין - אדריכלית';
+    if (window.location.pathname.includes('project-detail')) {
+        document.title = lang === 'en' 
+            ? 'Project Details - Batya Shorin'
+            : 'פרטי פרויקט - בתיה שורין';
+    } else {
+        document.title = lang === 'en' 
+            ? 'Batya Shorin - Architect'
+            : 'בתיה שורין - אדריכלית';
+    }
+    
+    // Update project title if on project detail page
+    if (window.location.pathname.includes('project-detail') && typeof updateProjectTitle === 'function') {
+        const projectId = new URLSearchParams(window.location.search).get('id');
+        if (projectId && typeof projectsData !== 'undefined' && projectsData[projectId]) {
+            updateProjectTitle(projectsData[projectId]);
+        }
+    }
 }
 
 // Initialize language on page load
